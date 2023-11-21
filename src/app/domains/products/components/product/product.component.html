@@ -1,13 +1,14 @@
-<div class="group rounded-lg border">
-    <a [routerLink]="['/product', product.id]" class="w-full overflow-hidden rounded-t-lg bg-gray-200">
+<div class="group rounded-lg border overflow-hidden shadow-md">
+    <a [routerLink]="['/product', product.id]" class="block">
         <img [src]="product.images[0]" [alt]="product.title"
-            class="h-full w-full object-cover object-center group-hover:opacity-75">
+            class="w-full h-56 object-cover object-center transition duration-300 transform group-hover:scale-105">
     </a>
-    <div class="flex flex-col space-y-2 p-4">
-        <h3 class="text-sm text-gray-700">{{ product.title | uppercase }}</h3>
-        <p class="text-lg font-medium text-gray-900">{{product.price | currency:'$':'symbol':'1.0'}}</p>
-        <p class="text-sm font-medium text-gray-500">{{product.creationAt | timeAgo}}</p>
-        <button class="text-black bg-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 w-full"
-            (click)="addToCartHandler()">Add to cart</button>
+    <div class="flex flex-col p-4">
+        <h3 class="text-base font-semibold text-gray-800 uppercase mb-2">{{ product.title }}</h3>
+        <p class="text-lg font-medium text-gray-900 mb-2">{{ product.price | currency:'USD':'symbol':'1.0' }}</p>
+        <p class="text-sm font-medium text-gray-500 mb-4">{{ product.creationAt | timeAgo }}</p>
+        <button
+            class="text-white bg-blue-500 font-semibold rounded-lg text-sm px-5 py-2 w-full hover:bg-blue-700 transition duration-300 focus:outline-none"
+            (click)="addToCartHandler()">Add to Cart</button>
     </div>
 </div>

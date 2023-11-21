@@ -26,6 +26,8 @@ export class HeaderComponent {
     this.hideSideMenu.update(prevState => !prevState);
   }
 
-
+  removeFromCart(index: number) {
+    this.cartService.removeFromCart(index);
+  }
 
 }

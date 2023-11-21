@@ -1,26 +1,23 @@
-<nav>
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-4">
-    <div class="flex items-center space-x-8">
-      <a href="https://flowbite.com/" class="flex items-center ">
-        <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3" alt="Flowbite Logo" />
-        <span class="self-center text-xl font-semibold whitespace-nowrap">Flowbite</span>
-      </a>
-      <ul class="flex space-x-6">
-        <li>
-          <a routerLink="/" RouterLinkActive="underline" class="block underline hover:underline" aria-current="page">
-            Home</a>
-        </li>
-        <li>
-          <a routerLink="/about" RouterLinkActive="underline" class="block hover:underline">About</a>
-        </li>
-        <li>
-          <a routerLink="/services" RouterLinkActive="underline" class="block hover:underline">Services</a>
-        </li>
-      </ul>
-    </div>
+<nav class="bg-gray-900 text-white">
+  <div class="container mx-auto flex justify-between items-center py-4">
+    <a href="https://flowbite.com/" class="flex items-center space-x-3">
+      <img src="https://flowbite.com/docs/images/logo.svg" class="h-6" alt="Flowbite Logo" />
+      <span class="text-xl font-semibold">Flowbite</span>
+    </a>
+    <ul class="flex space-x-6">
+      <li>
+        <a href="/" class="block hover:text-gray-300">Home</a>
+      </li>
+      <li>
+        <a href="/about" class="block hover:text-gray-300">About</a>
+      </li>
+      <li>
+        <a href="/services" class="block hover:text-gray-300">Services</a>
+      </li>
+    </ul>
     <div class="flex items-center">
       <button class="p-2 border rounded relative" (click)=toogleSideMenu()>
-        <div class="absolute -top-4 -left-4 rounded h-5 w-5 bg-black text-white text-xs">{{cart().length}}</div>
+        <div class="absolute -top-4 -left-4 rounded h-5 w-5 bg-blue-500 text-white text-xs">{{ cart().length }}</div>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
           class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -30,6 +27,8 @@
     </div>
   </div>
 </nav>
+
+
 
 <div class="fixed border-l-4 top-0 right-0 bg-red z-40 w-72 h-screen p-4 overflow-y-auto transition-transform bg-white "
   [class.translate-x-full]="hideSideMenu()">
@@ -42,19 +41,25 @@
       </svg>
     </button>
   </div>
-  <div>
-    <div class="flex justify-between items-center space-y-2" *ngFor="let product of cart()">
 
-      <div class="flex space-x-2 items-center">
-        <img class="w-6 h-6" [src]="product.images[0]" [alt]="product.title">
-        <h3>
-          <p>{{product.title}}</p>
-        </h3>
+  <div>
+
+    <div class="grid gap-4">
+      <div *ngFor="let product of cart()" class="flex justify-between items-center border-b pb-2">
+        <div class="flex items-center space-x-4">
+          <img class="w-12 h-12 rounded-md object-cover" [src]="product.images[0]" [alt]="product.title">
+          <div>
+            <h3 class="text-lg font-semibold">{{ product.title }}</h3>
+            <p class="text-gray-600">{{ product.price }}</p>
+          </div>
+        </div>
+        <p class="text-xl font-bold">{{ product.price }}</p>
       </div>
-      <p>{{product.price}}</p>
+      <div class="pt-4">
+        <p class="text-xl font-bold">Total: {{ total() }}</p>
+      </div>
     </div>
-    <div>
-      <p>Total: {{ total() }} </p>
-    </div>
+
   </div>
+
 </div>
